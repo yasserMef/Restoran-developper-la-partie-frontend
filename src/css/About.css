@@ -1,0 +1,19 @@
+.about-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .about h1, .history h2, .mission h2, .team h2 {
+    color: #333;
+    border-bottom: 2px solid #f4a261;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .about p, .history p, .mission p, .team p {
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: #555;
+  }
