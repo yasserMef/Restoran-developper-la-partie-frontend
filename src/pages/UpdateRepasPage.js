@@ -2,10 +2,13 @@ import React, { useEffect } from 'react'
 import { Container } from 'react-bootstrap'
 import { useState  } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import {updaterepas} from "../redux/slice/repasSlice"
+import { useDispatch } from 'react-redux'
 import axios from 'axios'
 
 function UpdateRepasPage() {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const [urlImage , setUrlImage]=useState(null)
   const [title , setTitle]=useState("")
   const [description , setDescription]=useState("")
@@ -41,13 +44,13 @@ function UpdateRepasPage() {
           form.append("file",urlImage)
           form.append("upload_preset" , "om05j9cc")
       const img=  await axios.post("https://api.cloudinary.com/v1_1/dod6pntjs/upload",form)
-      
-      await axios.put(`http://localhost:4000/repas/${id}`,{
-          title,
-          description,
-          categorie,
-          image:img.data.secure_url
-      })
+      const data = {
+        title,
+        description,
+        categorie,
+        image:img.data.secure_url
+      }
+      await dispatch(updaterepas({id,data}))
       setLoading(true)
       }catch(err){
           console.log(err.message)

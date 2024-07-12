@@ -1,15 +1,15 @@
-import React, { useContext, useState } from 'react'
+import React from 'react'
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import {repasContext} from "../../repasContext/RepasProvider"
 
-function NavbarResto({getValInp}) {
+
+function NavbarResto({searchByKeyword}) {
+  
   
   const changeKeyword = async(e)=>{
-     getValInp(e.target.value)
+      searchByKeyword(e.target.value)
 }
   return (
     <Navbar expand="lg" className="bg-body-tertiary">

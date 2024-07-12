@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { Container } from 'react-bootstrap'
 import axios from "axios"
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import {addrepas} from "../redux/slice/repasSlice"
+ 
 
 const AddRepasPage=()=> {
     //dod6pntjs
@@ -13,7 +16,7 @@ const AddRepasPage=()=> {
     const [description , setDescription]=useState("")
     const [categorie , setCategorie]=useState("")
     const [loading , setLoading]= useState(false)
-    
+    const dispatch = useDispatch()
     
     const changeImage = (e)=>{
         setUrlImage(e.target.files[0])
@@ -35,13 +38,14 @@ const AddRepasPage=()=> {
             form.append("file",urlImage)
             form.append("upload_preset" , "om05j9cc")
         const img=  await axios.post("https://api.cloudinary.com/v1_1/dod6pntjs/upload",form)
-        console.log(img)
-        await axios.post("http://localhost:4000/repas",{
-            title,
-            description,
-            categorie,
-            image:img.data.secure_url
-        })
+        
+       await dispatch(addrepas(
+          {title,
+          description,
+          categorie,
+          image:img.data.secure_url
+        }))
+        
         setLoading(true)
         }catch(err){
             console.log(err.message)

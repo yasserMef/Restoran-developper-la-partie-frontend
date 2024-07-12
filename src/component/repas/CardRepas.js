@@ -1,13 +1,15 @@
-import axios from 'axios';
+import { useDispatch } from 'react-redux';
 import React from 'react'
 import {Card , Col} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import {deleterepas} from "../../redux/slice/repasSlice"
+
 
 
 function CardRepas({about ,title,description , id}) {
+  const dispatch = useDispatch()
   const deleteRepas = async()=>{
-   await axios.delete(`http://localhost:4000/repas/${id}`)
-   window.location.reload()
+  await dispatch(deleterepas(id))
   }
   return (
     <Col className='mt-3'>

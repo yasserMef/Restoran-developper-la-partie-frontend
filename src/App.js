@@ -14,17 +14,16 @@ import About from './pages/About';
 
 function App() {
   const [valSearch  , setValSearch] = useState("")
-  const getValInp = (val)=>{
-  setValSearch(val)
-    
+  const searchByKeyword = (val)=>{
+      setValSearch(val)
   }
   return (
       <div>
-        <NavbarResto getValInp={getValInp}   />
+        <NavbarResto searchByKeyword={searchByKeyword}   />
         <Router>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path='/allRepas' element={<AllRepasPage getValInp={getValInp}  valSearch={valSearch}/>}/>
+          <Route path='/allRepas' element={<AllRepasPage valSearch={valSearch}/>}/>
           <Route path='/addRepas' element={<AddRepasPage/>}/>
           <Route path='/repas/:id' element={<GetOneRepas/>}/>
           <Route path='/update_repas/:id' element={<UpdateRepasPage/>}/>
